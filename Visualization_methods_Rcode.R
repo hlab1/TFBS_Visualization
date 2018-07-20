@@ -212,7 +212,13 @@ landscape.view = function( data.file=NA,  col.X=0, col.Y=0, score.type="relative
 					numwin= enrichment.threshold/win.width
 					lastbit = win.width*(numwin%%1)  # instances where the number of windows is not a whole number due to enrichment.threshold not evenly divisable by 5
 					numwin=floor(numwin)  # number of background windows
-					starts=seq(enrichment.threshold+bckgrnd.buffer, max.dist, by=floor(distalrange/numwin) )  # the distance that each 5bp window will start from
+					
+					if(floor(distalrange/numwin) < 1) {
+					  increment = 1
+					} else {
+					  increment = floor(distalrange/numwin)
+					  
+					starts=seq(enrichment.threshold+bckgrnd.buffer, max.dist, by=floor(increment) )  # the distance that each 5bp window will start from
 					distal=matrix(nrow=0, ncol=0)
 					for( ind in 1:numwin ){
 						distal=rbind(distal, data.file[which(abs(data.file[, col.X]) >= starts[ind] & abs(data.file[, col.X]) < starts[ind]+5 ), ]  )

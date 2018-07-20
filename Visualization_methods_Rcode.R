@@ -217,7 +217,8 @@ landscape.view = function( data.file=NA,  col.X=0, col.Y=0, score.type="relative
 					  increment = 1
 					} else {
 					  increment = floor(distalrange/numwin)
-					  
+					}
+
 					starts=seq(enrichment.threshold+bckgrnd.buffer, max.dist, by=floor(increment) )  # the distance that each 5bp window will start from
 					distal=matrix(nrow=0, ncol=0)
 					for( ind in 1:numwin ){
